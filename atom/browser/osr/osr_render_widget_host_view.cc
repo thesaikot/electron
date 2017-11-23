@@ -14,7 +14,7 @@
 #include "base/memory/ptr_util.h"
 #include "base/single_thread_task_runner.h"
 #include "base/time/time.h"
-#include "cc/scheduler/delay_based_time_source.h"
+#include "components/viz/common/frame_sinks/delay_based_time_source.h"
 #include "components/viz/common/gl_helper.h"
 #include "components/viz/common/quads/copy_output_request.h"
 #include "content/browser/renderer_host/compositor_resize_lock.h"
