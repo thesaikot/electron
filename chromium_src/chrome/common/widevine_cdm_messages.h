@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "ipc/ipc_message_macros.h"
-#include "ppapi/features/features.h"
+#include "media/media_features.h"
 
 #define IPC_MESSAGE_START ChromeMsgStart
 
@@ -26,6 +26,6 @@ IPC_SYNC_MESSAGE_CONTROL1_3(
     bool /* is_available */,
     std::vector<base::string16> /* additional_param_names */,
     std::vector<base::string16> /* additional_param_values */)
-#endif
+#endif  // BUILDFLAG(ENABLE_LIBRARY_CDMS)
 
 // Browser -> Renderer messages.

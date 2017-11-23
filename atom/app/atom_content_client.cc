@@ -19,6 +19,7 @@
 #include "content/public/common/content_constants.h"
 #include "content/public/common/pepper_plugin_info.h"
 #include "content/public/common/user_agent.h"
+#include "media/media_features.h"
 #include "pdf/pdf.h"
 #include "ppapi/shared_impl/ppapi_permissions.h"
 #include "third_party/widevine/cdm/stub/widevine_cdm_version.h"
@@ -108,7 +109,7 @@ content::PepperPluginInfo CreateWidevineCdmInfo(const base::FilePath& path,
 
   return widevine_cdm;
 }
-#endif
+#endif  // defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_LIBRARY_CDMS)
 
 void ComputeBuiltInPlugins(std::vector<content::PepperPluginInfo>* plugins) {
   content::PepperPluginInfo pdf_info;
@@ -176,7 +177,7 @@ void AddWidevineCdmFromCommandLine(
   plugins->push_back(CreateWidevineCdmInfo(widevine_cdm_path,
                                            widevine_cdm_version));
 }
-#endif
+#endif  //  defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_LIBRARY_CDMS)
 
 AtomContentClient::AtomContentClient() {
 }
@@ -218,7 +219,7 @@ void AtomContentClient::AddPepperPlugins(
   AddPepperFlashFromCommandLine(plugins);
 #if defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_LIBRARY_CDMS)
   AddWidevineCdmFromCommandLine(plugins);
-#endif
+#endif  // defined(WIDEVINE_CDM_AVAILABLE) && BUILDFLAG(ENABLE_LIBRARY_CDMS)
   ComputeBuiltInPlugins(plugins);
 }
 
